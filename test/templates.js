@@ -31,6 +31,20 @@ describe("templates", function(){
     })
   })
 
+  describe(".adoc", function(){
+    it("should render asciidoc file", function(done){
+      poly.render("stuff.adoc", function(error, body){
+        should.not.exist(error)
+        should.exist(body)
+        body.should.include("<h1>Sintaxi</h1>")
+        body.should.include("<p>")
+        body.should.include('<code class="language-json" data-lang="json">')
+        body.should.not.include('<code class="lang-json" data-lang="json">')
+        done()
+      })
+    })
+  })
+
   describe(".jade", function(){
 
     it("should have jade partial layout and include working", function(done){
